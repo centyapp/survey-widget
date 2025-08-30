@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family:
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+.surveyCard {
+  height: fit-content;
+  width: 100%;
+  max-width: 16rem;
+  padding: 1rem 0.75rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+[data-theme="dark"] .fieldLabel,
+.dark .fieldLabel {
+  color: #f9fafb;
+}
+
+.card {
+  background-color: #ffffff;
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* 24px - equivalent to gap-6 */
+  border-radius: 0.75rem; /* 12px - equivalent to rounded-xl */
+  border: 1px solid #e2e8f0;
+  padding-top: 1.5rem; /* 24px - equivalent to py-6 */
+  padding-bottom: 1.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* equivalent to shadow-sm */
+}
+
+/* Dark mode variant - add to parent with data-theme="dark" or .dark class */
+[data-theme="dark"] .card,
+.dark .card {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+.surveyWrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  transform: translateX(100%) translateY(20px);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.surveyWrapper.visible {
+  transform: translateX(0) translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .surveyWrapper {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
