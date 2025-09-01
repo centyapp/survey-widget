@@ -27,5 +27,5 @@ export interface SurveyDto<M = Record<string, any>> {
   createdAt: string;
   updatedAt: string;
   fields: SurveyField[];
-  metadata: M;
+  metadata?: M;
 }

@@ -1,11 +1,11 @@
 import type { RatingFieldMetadata } from "@repo/core";
 import { useState } from "react";
-import Button from "../button";
+import Button from "../../button";
 import styles from "./rating-field.module.css";
 
 export default function RatingField(
   props: RatingFieldMetadata & {
-    onSubmit: () => void;
+    onSubmit?: () => void;
   }
 ) {
   const { minDesc, maxDesc, onSubmit } = props;

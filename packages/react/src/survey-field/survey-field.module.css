@@ -1,0 +1,18 @@
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.75rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+[data-theme="dark"] .fieldLabel,
+.dark .fieldLabel {
+  color: #f9fafb;
+}
