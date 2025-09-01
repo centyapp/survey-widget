@@ -9,7 +9,7 @@
     "dist"
   ],
   "main": "dist/index.es.js",
-  "module": "dist/index.cjs",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
@@ -18,8 +18,8 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

@@ -20,9 +20,9 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      formats: ["es", "cjs"],
+      formats: ["es"],
       fileName: (format) => `index.${format}.js`,
-      entry: resolve(__dirname, "src/index.tsx"),
+      entry: resolve(__dirname, "src/index.ts"),
     },
     copyPublicDir: false,
     rollupOptions: {

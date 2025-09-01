@@ -12,6 +12,11 @@
   outline: none;
   flex-shrink: 0;
   border: 1px solid transparent;
+  font-family:
+    Inter,
+    -apple-system,
+    Roboto,
+    sans-serif;
 }
 
 /* Disabled state */

@@ -10,16 +10,12 @@ export default function Survey({ survey }: { survey: SurveyDto }) {
     const element = wrapperRef.current;
     if (!element) return;
 
-    // Force initial state (hidden)
     element.classList.remove(styles.visible);
 
-    // Use requestAnimationFrame to ensure the DOM has updated
-    // before applying the visible class
     const animationId = requestAnimationFrame(() => {
       element.classList.add(styles.visible);
     });
 
-    // Cleanup function to cancel the animation frame if component unmounts
     return () => {
       cancelAnimationFrame(animationId);
     };
@@ -27,17 +23,11 @@ export default function Survey({ survey }: { survey: SurveyDto }) {
 
   const handleClose = () => {
     const element = wrapperRef.current;
-    if (!element) {
-      surveyService.dismiss();
-      return;
-    }
+    if (!element) return;
 
-    // Remove visible class to trigger slide-out animation
     element.classList.remove(styles.visible);
 
-    // Wait for animation to complete before dismissing
-    // Adjust timeout to match your CSS transition duration
-    surveyService.dismiss();
+    surveyService.response("survey-id");
   };
 
   return (
