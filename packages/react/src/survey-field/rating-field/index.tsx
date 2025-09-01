@@ -1,6 +1,6 @@
+import Button from "@/button";
 import type { RatingFieldMetadata } from "@repo/core";
 import { useState } from "react";
-import Button from "../../button";
 import styles from "./rating-field.module.css";
 
 export default function RatingField(

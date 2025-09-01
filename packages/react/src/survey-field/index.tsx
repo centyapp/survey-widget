@@ -1,6 +1,6 @@
-import { type RatingFieldMetadata, type SurveyField } from "@repo/core";
-import RatingField from "./rating-field";
+import RatingField from "@/survey-field/rating-field";
 import styles from "./survey-field.module.css";
+import { type RatingFieldMetadata, type SurveyField } from "@repo/core";
 
 export default function SurveyField({
   label,

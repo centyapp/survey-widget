@@ -1,6 +1,6 @@
+import SurveyField from "@/survey-field";
 import { surveyService, type SurveyDto } from "@repo/core";
 import { useEffect, useRef } from "react";
-import SurveyField from "../survey-field";
 import styles from "./survey.module.css";
 
 export default function Survey({ survey }: { survey: SurveyDto }) {

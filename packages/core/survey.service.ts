@@ -46,7 +46,6 @@ class SurveyService {
 
   subscribe(fn: (survey: SurveyDto | null) => void) {
     this.subscribers.add(fn);
-    // fn(this.surveys);
 
     return () => {
       this.subscribers.delete(fn);

@@ -1,7 +1,7 @@
 import { surveyService } from "@repo/core";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import SurveyWidget from ".";
+import { SurveyWidget } from ".";
 
 function App() {
   return (

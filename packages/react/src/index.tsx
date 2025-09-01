@@ -1,9 +1,9 @@
+import Survey from "@/survey";
 import { surveyService, type SurveyDto } from "@repo/core";
 import { useEffect, useState } from "react";
-import Survey from "./survey";
 import "./index.module.css";
 
-export default function SurveyWidget() {
+function SurveyWidget() {
   const [survey, setSurvey] = useState<SurveyDto | null>(null);
 
   useEffect(() => {
@@ -17,3 +17,5 @@ export default function SurveyWidget() {
 
   return <Survey survey={survey} />;
 }
+
+export { SurveyWidget, surveyService };
