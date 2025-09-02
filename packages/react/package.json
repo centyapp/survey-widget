@@ -1,6 +1,7 @@
 {
   "name": "@centyapp/survey-widget",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.15.1",
   "type": "module",
   "description": "A React component for embedding a survey widget in your application.",
   "author": "Khoi Nguyen <npbk>",
@@ -8,6 +9,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.es.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
