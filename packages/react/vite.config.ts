@@ -26,13 +26,12 @@ export default defineConfig({
     },
     copyPublicDir: false,
     rollupOptions: {
-      external: ["react", "react-dom"],
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-        },
-      },
+      external: [
+        "react",
+        "react-dom",
+        "react-dom/client",
+        "react/jsx-runtime", // ← important for SWC JSX transform
+      ],
     },
   },
 });
