@@ -5,7 +5,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "release": "turbo run build && turbo run status && changeset publish",
+    "release": "turbo run build && changeset publish",
     "status": "changeset status --verbose"
   },
   "devDependencies": {
