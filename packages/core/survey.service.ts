@@ -4,29 +4,13 @@ type Survey = SurveyDto | null;
 type Subscriber = (survey: Survey) => void;
 
 class SurveyService {
-  private subscribers = new Set<Subscriber>();
-  private currentSurvey: Survey = null;
-  private surveys: SurveyDto[] | null = null;
   private clientId: string | null = null;
+  private currentSurvey: Survey = null;
+  private subscribers = new Set<Subscriber>();
+  private surveyDtoCache = new Map<string, SurveyDto>();
 
-  async init(clientId: string): Promise<void> {
-    console.log(`Fetching using ${clientId}`);
-    // TODO: Fetch real data using clientId
-    this.surveys = mockSurveys;
-    this.clientId = clientId;
-  }
-
-  isInitialized(): boolean {
-    return this.surveys !== null;
-  }
-
-  show(surveyId: string): void {
-    if (!this.isInitialized()) {
-      console.warn("SurveyService not initialized yet");
-      return;
-    }
-
-    const found = this.surveys!.find((s) => s.id === surveyId);
+  async show(surveyId: string): Promise<void> {
+    const found = await this.getSurveyById(surveyId);
     if (!found) {
       console.warn(`Survey with id ${surveyId} not found`);
       return;
@@ -52,6 +36,18 @@ class SurveyService {
     };
   }
 
+  private async getSurveyById(id: string): Promise<SurveyDto> {
+    const cached = this.surveyDtoCache.get(id);
+    if (cached) return cached;
+
+    const survey = (await (
+      await fetch(`http://localhost:8080/api/v1/forms/${id}`)
+    ).json()) as SurveyDto;
+
+    this.surveyDtoCache.set(id, survey);
+    return survey;
+  }
+
   private dismiss(): void {
     setTimeout(() => {
       this.currentSurvey = null;
@@ -63,43 +59,6 @@ class SurveyService {
     this.subscribers.forEach((fn) => fn(this.currentSurvey));
   }
 }
-
-const mockSurveys: SurveyDto[] = [
-  {
-    id: "1",
-    name: "Survey 1",
-    description: "This is the first survey",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    fields: [
-      {
-        name: "number",
-        label: "How satisfied are you with our service?",
-        type: "rating",
-        metadata: {
-          ratingType: "number",
-        },
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Survey 2",
-    description: "This is the second survey",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    fields: [
-      {
-        name: "emoji",
-        label: "How likely are you to recommend our product?",
-        type: "rating",
-        metadata: {
-          ratingType: "emoji",
-        },
-      },
-    ],
-  },
-];
 
 const surverService = new SurveyService();
 

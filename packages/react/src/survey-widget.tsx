@@ -5,12 +5,7 @@ import { useEffect, useState } from "react";
 export default function SurveyWidget() {
   const [survey, setSurvey] = useState<SurveyDto | null>(null);
 
-  useEffect(() => {
-    (async () => {
-      await surveyService.init("mock");
-      surveyService.subscribe(setSurvey);
-    })();
-  }, []);
+  useEffect(() => surveyService.subscribe(setSurvey), []);
 
   if (!survey) return null;
 
