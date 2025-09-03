@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import styles from "./survey.module.css";
 
 /**
- * @internal
  * Renders the survey UI and handles survey field rendering and animation.
  *
  * **Note:** This component is intended for internal use only.
