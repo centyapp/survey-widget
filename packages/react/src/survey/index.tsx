@@ -3,6 +3,18 @@ import { surveyService, type SurveyDto } from "@repo/core";
 import { useEffect, useRef } from "react";
 import styles from "./survey.module.css";
 
+/**
+ * @internal
+ * Renders the survey UI and handles survey field rendering and animation.
+ *
+ * **Note:** This component is intended for internal use only.
+ * Consumer applications should not use this component directly.
+ * Instead, use the `SurveyWidget` component for survey integration.
+ *
+ * @param {SurveyDto} survey The survey data to render.
+ *
+ * @returns The rendered survey component.
+ */
 export default function Survey({ survey }: { survey: SurveyDto }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
