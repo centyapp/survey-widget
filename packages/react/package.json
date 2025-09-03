@@ -1,6 +1,6 @@
 {
   "name": "@centyapp/react-survey-widget",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "packageManager": "pnpm@10.15.1",
   "type": "module",
   "description": "A React component for embedding a survey widget in your application.",
