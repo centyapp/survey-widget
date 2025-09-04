@@ -1,5 +1,11 @@
 # @repo/core
 
+## 0.0.5
+
+### Patch Changes
+
+- feat: handle multi-fields on a survey
+
 ## 0.0.4
 
 ### Patch Changes
