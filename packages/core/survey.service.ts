@@ -4,7 +4,6 @@ type Survey = SurveyDto | null;
 type Subscriber = (survey: Survey) => void;
 
 class SurveyService {
-  private clientId: string | null = null;
   private currentSurvey: Survey = null;
   private subscribers = new Set<Subscriber>();
   private surveyDtoCache = new Map<string, SurveyDto>();
@@ -20,12 +19,22 @@ class SurveyService {
     this.notify();
   }
 
-  response(surveyId: string) {
-    console.log(
-      `Send response to survey ${surveyId} of client ${this.clientId}`
-    );
+  async response(questionId: string, value: any): Promise<void> {
+    if (!this.currentSurvey) {
+      console.warn("There is no survey showing at the moment");
+      return;
+    }
 
-    this.dismiss();
+    console.log(
+      `Send response to survey ${this.currentSurvey!.id}, question: ${questionId} with value: ${value}`
+    );
+  }
+
+  dismiss(): void {
+    setTimeout(() => {
+      this.currentSurvey = null;
+      this.notify();
+    }, 600);
   }
 
   subscribe(fn: Subscriber): VoidFunction {
@@ -41,18 +50,11 @@ class SurveyService {
     if (cached) return cached;
 
     const survey = (await (
-      await fetch(`http://localhost:8080/api/v1/forms/${id}`)
+      await fetch(`http://localhost:8080/api/v1/surveys/${id}`)
     ).json()) as SurveyDto;
 
     this.surveyDtoCache.set(id, survey);
     return survey;
-  }
-
-  private dismiss(): void {
-    setTimeout(() => {
-      this.currentSurvey = null;
-      this.notify();
-    }, 600);
   }
 
   private notify(): void {

@@ -1,7 +1,7 @@
-import SurveyField from "@/survey-field";
+import SurveyQuestion from "@/survey-question";
 import { surveyService, type SurveyDto } from "@repo/core";
-import { useEffect, useRef } from "react";
-import styles from "./survey.module.css";
+import { useCallback, useEffect, useRef, useState } from "react";
+import styles from "./index.module.css";
 
 /**
  * Renders the survey UI and handles survey field rendering and animation.
@@ -14,7 +14,40 @@ import styles from "./survey.module.css";
  *
  * @returns The rendered survey component.
  */
-export default function Survey({ survey }: { survey: SurveyDto }) {
+export function Survey({
+  survey,
+  onClose,
+}: {
+  survey: SurveyDto;
+  onClose?: VoidFunction;
+}) {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const currentQuestion = survey.questions[currentQuestionIndex];
+
+  const onNext = useCallback(() => {
+    const isEnd = currentQuestionIndex + 1 === survey.questions.length;
+
+    if (isEnd) {
+      onClose?.();
+    } else {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
+  }, [currentQuestionIndex, survey.questions.length, onClose]);
+
+  if (!currentQuestion) {
+    console.warn("Something went wrong with Survey component");
+    return null;
+  }
+
+  return (
+    <div className={styles.surveyCard}>
+      <SurveyQuestion {...currentQuestion} onNext={onNext} />
+    </div>
+  );
+}
+
+export function SurveyWithWrapper({ survey }: { survey: SurveyDto }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,13 +56,9 @@ export default function Survey({ survey }: { survey: SurveyDto }) {
 
     element.classList.remove(styles.visible);
 
-    const animationId = requestAnimationFrame(() => {
+    setTimeout(() => {
       element.classList.add(styles.visible);
-    });
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
+    }, 100);
   }, []);
 
   const handleClose = () => {
@@ -37,24 +66,12 @@ export default function Survey({ survey }: { survey: SurveyDto }) {
     if (!element) return;
 
     element.classList.remove(styles.visible);
-
-    surveyService.response("survey-id");
+    surveyService.dismiss();
   };
 
   return (
     <div ref={wrapperRef} className={styles.surveyWrapper}>
-      <div className={`${styles.surveyCard} ${styles.card}`}>
-        {survey.fields.map((field) => (
-          <SurveyField
-            onSubmit={handleClose}
-            key={field.name}
-            label={field.label}
-            name={field.name}
-            type={field.type}
-            metadata={field.metadata}
-          />
-        ))}
-      </div>
+      <Survey survey={survey} onClose={handleClose} />
     </div>
   );
 }

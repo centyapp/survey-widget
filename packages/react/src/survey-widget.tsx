@@ -1,4 +1,4 @@
-import Survey from "@/survey";
+import { SurveyWithWrapper } from "@/survey";
 import { surveyService, type SurveyDto } from "@repo/core";
 import { useEffect, useState } from "react";
 
@@ -9,5 +9,5 @@ export default function SurveyWidget() {
 
   if (!survey) return null;
 
-  return <Survey survey={survey} />;
+  return <SurveyWithWrapper survey={survey} />;
 }

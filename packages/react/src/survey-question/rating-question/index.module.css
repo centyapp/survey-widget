@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ratingContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.starButton {
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: transform 0.15s ease-in-out;
+  background: none;
+  border: none;
+}
+
+.starButton:disabled {
+  cursor: default;
+}
+
+.starButtonHover:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.star {
+  transition:
+    color 0.15s ease-in-out,
+    fill 0.15s ease-in-out;
+}
+
+.starSelected {
+  fill: #facc15;
+  color: #facc15;
+}
+
+.starDefault {
+  color: #d1d5db;
+  fill: none;
+}
+
+.numberButton {
+  width: 2.5rem;
+  cursor: pointer;
+}
+
+.numberButtonSelected {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.emojiButton {
+  width: 2rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  transition: all 0.15s ease-in-out;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+}
+
+.emojiButton:disabled {
+  cursor: default;
+}
+
+.emojiButtonSelected {
+  background-color: #dbeafe;
+}
+
+.emojiButtonHover:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.description {
+  color: #6b7280;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+[data-theme="dark"] .description,
+.dark .description {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .starDefault,
+.dark .starDefault {
+  color: #6b7280;
+}
+
+[data-theme="dark"] .emojiButtonSelected,
+.dark .emojiButtonSelected {
+  background-color: #1e40af;
+}

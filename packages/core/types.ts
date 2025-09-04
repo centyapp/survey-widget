@@ -1,22 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface RatingFieldMetadata {
+export interface RatingQuestionMetadata {
   ratingType: "star" | "number" | "emoji";
   minDesc?: string;
   maxDesc?: string;
 }
 
-export interface TextFieldMetadata {
+export interface TextQuestionMetadata {
   placeholder?: string;
   maxLength?: number;
 }
 
-export type SurveyFieldType = "rating" | "text";
-
-export interface SurveyField<M = Record<string, any>> {
+export interface SurveyQuestion<M = Record<string, any>> {
   name: string;
   label: string;
-  onSubmit?: () => void;
-  type: SurveyFieldType;
+  type: "rating" | "text";
   metadata: M;
 }
 
@@ -26,6 +23,6 @@ export interface SurveyDto<M = Record<string, any>> {
   description: string;
   createdAt: string;
   updatedAt: string;
-  fields: SurveyField[];
+  questions: SurveyQuestion[];
   metadata?: M;
 }
