@@ -1,5 +1,11 @@
 # @centyapp/react-survey-widget
 
+## 0.0.6
+
+### Patch Changes
+
+- feat: update package.json and restructure exports for improved module handling
+
 ## 0.0.5
 
 ### Patch Changes
