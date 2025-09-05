@@ -12,9 +12,19 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index.es.js",
-  "module": "dist/index.es.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./internal": {
+      "default": "./dist/internal.js",
+      "types": "./dist/internal.d.ts"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && tsc -b && vite build",

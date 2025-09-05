@@ -21,8 +21,10 @@ export default defineConfig({
   build: {
     lib: {
       formats: ["es"],
-      fileName: (format) => `index.${format}.js`,
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        internal: resolve(__dirname, "src/internal.ts"),
+      },
     },
     copyPublicDir: false,
     rollupOptions: {
