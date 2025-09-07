@@ -1,5 +1,11 @@
 # @repo/core
 
+## 0.0.7
+
+### Patch Changes
+
+- ui: enhance survey components props
+
 ## 0.0.6
 
 ### Patch Changes
