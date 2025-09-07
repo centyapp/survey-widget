@@ -3,24 +3,13 @@ import { surveyService, type SurveyDto } from "@repo/core";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 
-/**
- * Renders the survey UI and handles survey field rendering and animation.
- *
- * **Note:** This component is intended for internal use only.
- * Consumer applications should not use this component directly.
- * Instead, use the `SurveyWidget` component for survey integration.
- *
- * @param {SurveyDto} survey The survey data to render.
- *
- * @returns The rendered survey component.
- */
-export function Survey({
-  survey,
-  onClose,
-}: {
+type Props = {
   survey: SurveyDto;
   onClose?: VoidFunction;
-}) {
+  className?: string;
+};
+
+export function Survey({ survey, onClose, className }: Props) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const currentQuestion = survey.questions[currentQuestionIndex];
@@ -41,13 +30,13 @@ export function Survey({
   }
 
   return (
-    <div className={styles.surveyCard}>
+    <div className={styles.surveyCard + " " + className}>
       <SurveyQuestion {...currentQuestion} onNext={onNext} />
     </div>
   );
 }
 
-export function SurveyWithWrapper({ survey }: { survey: SurveyDto }) {
+export function SurveyWithWrapper({ survey, className }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -70,7 +59,7 @@ export function SurveyWithWrapper({ survey }: { survey: SurveyDto }) {
   };
 
   return (
-    <div ref={wrapperRef} className={styles.surveyWrapper}>
+    <div ref={wrapperRef} className={styles.surveyWrapper + " " + className}>
       <Survey survey={survey} onClose={handleClose} />
     </div>
   );
