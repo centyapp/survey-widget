@@ -30,9 +30,9 @@ export default function TextQuestion({
   return (
     <form onSubmit={onSubmit} className={styles.container}>
       <textarea
+        name="text-question"
         className={styles.textarea}
-        rows={5}
-        style={{ resize: "none" }}
+        rows={3}
         placeholder={placeholder}
         maxLength={maxLength}
         value={input}

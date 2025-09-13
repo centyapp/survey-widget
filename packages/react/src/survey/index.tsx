@@ -1,4 +1,5 @@
 import SurveyQuestion from "@/survey-question";
+import { cn } from "@/utils";
 import { surveyService, type SurveyDto } from "@repo/core";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
@@ -30,7 +31,7 @@ export function Survey({ survey, onClose, className }: Props) {
   }
 
   return (
-    <div className={styles.surveyCard + " " + className}>
+    <div className={cn(styles.surveyCard, className)}>
       <SurveyQuestion {...currentQuestion} onNext={onNext} />
     </div>
   );
@@ -59,7 +60,7 @@ export function SurveyWithWrapper({ survey, className }: Props) {
   };
 
   return (
-    <div ref={wrapperRef} className={styles.surveyWrapper + " " + className}>
+    <div ref={wrapperRef} className={cn(styles.surveyWrapper, className)}>
       <Survey survey={survey} onClose={handleClose} />
     </div>
   );

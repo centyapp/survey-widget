@@ -4,7 +4,7 @@
   "commit": false,
   "fixed": [],
   "linked": [["@centyapp/react-survey-widget", "@repo/core"]],
-  "ignore": ["@repo/eslint-config"],
+  "ignore": ["@repo/eslint-config", "web"],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch"

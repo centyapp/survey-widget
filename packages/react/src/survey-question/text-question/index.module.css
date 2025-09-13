@@ -19,6 +19,9 @@
     box-shadow 0.2s;
   outline: none;
   box-sizing: border-box;
+  font-size: 12px;
+  resize: none;
+  line-height: 1rem;
 }
 
 .textarea::placeholder {

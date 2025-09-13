@@ -1,5 +1,11 @@
 # @centyapp/react-survey-widget
 
+## 0.0.8
+
+### Patch Changes
+
+- add playground app and fix textarea styles, correct survey internal component className exposings
+
 ## 0.0.7
 
 ### Patch Changes

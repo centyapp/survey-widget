@@ -1,6 +1,6 @@
 {
   "name": "@centyapp/react-survey-widget",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packageManager": "pnpm@10.15.1",
   "type": "module",
   "description": "A React component for embedding a survey widget in your application.",
@@ -17,12 +17,12 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./internal": {
-      "default": "./dist/internal.js",
-      "types": "./dist/internal.d.ts"
+      "types": "./dist/internal.d.ts",
+      "default": "./dist/internal.js"
     }
   },
   "scripts": {
